@@ -33,7 +33,7 @@ gem 'will_paginate'
 gem 'bootstrap'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass'
-gem 'mini_magick'
+gem "mini_magick", ">= 4.9.4"
 gem 'jquery-rails'
 
 # Use Capistrano for deployment
