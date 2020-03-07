@@ -26,6 +26,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def current_user?(user)
+    current_user == user
+  end
+
   def forget(user)
     user.forget
     cookies.delete(:user_id)
@@ -36,6 +40,16 @@ module SessionsHelper
     forget(current_user)
     session.delete(:user_id)
     @current_user = nil
+  end
+
+  # ここでリクエスト時のURLを一旦保存しておく
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+
+  def redirect_or_back(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
   end
 
 end
