@@ -1,0 +1,12 @@
+<h1>FreeMarketApp</h1>
+
+<p>Hi <%= @user.name %></p>
+
+<p>
+  会員登録していただき、ありがとうございます。
+  下記のリンクから、本登録していただきますようお願いします。
+</p>
+
+<%= link_to "有効化",edit_account_activation_url(@user.activation_token,
+                                              email: @user.email) %>
+
