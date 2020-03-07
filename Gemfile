@@ -32,6 +32,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate'
 gem 'bootstrap'
 gem 'bootstrap-will_paginate'
+gem 'bootstrap-sass'
+gem 'mini_magick'
+gem 'jquery-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

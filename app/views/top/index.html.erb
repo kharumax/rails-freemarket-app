@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button class="btn btn-primary">Button</button>
+  <h1>仮のトップページです。</h1>
+
+  <% if logged_in? %>
+    <%= link_to "Logout", logout_path,method: :delete,class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to "Signup" , signup_path, class: "btn btn-success"  %>
+    <%= link_to "Login",   login_path, class: "btn btn-primary" %>
+  <% end %>
+
+
+</body>
+</html>
+

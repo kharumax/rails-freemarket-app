@@ -1,0 +1,48 @@
+
+
+<h1>Log In!</h1>
+<div class="row">
+
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email,class: "form-control" %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password,class: "form-control" %>
+
+      <%= f.label :remember_me,class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span>Remember me on this com</span>
+      <% end %> %>
+
+      <%= f.submit "ログイン",class: "btn btn-primary" %>
+    <% end %>
+
+
+  </div>
+</div>
+
+<style>
+  .row {
+    text-align: center;
+  }
+  .col-md-6 {
+    text-align: center;
+  }
+  .checkbox {
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+  .checkbox span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+
+  #session_remember_me {
+    width: auto;
+    margin-left: 0;
+  }
+</style>
