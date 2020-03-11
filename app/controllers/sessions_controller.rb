@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:session][:email])
     if @user && @user.authenticate(params[:session][:password])
-      if @user.is_activated?
+      if @user.activated?
         log_in @user
         params[:session][:remember_me] == "1" ? remember(@user) : forget(@user)
-        redirect_or_back @user
+        redirect_or_back root_url
       else
         message = "Check your email or please activate yout account"
         flash[:warning] = message

@@ -21,9 +21,15 @@ class UsersController < ApplicationController
       render "new"
     end
   end
-  
+
+  # ユーザープロフィールに関しての情報(名前など)
   def show
     @user = User.find_by(id: params[:id])
+  end
+
+  def products
+    @user = User.find_by(id: params[:id])
+    @products = Product.find_by(user_id: @user.id).all.order(created_at: :desc)
   end
   
   def edit
@@ -50,14 +56,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def logged_in_user
-    unless logged_in? # ここでTrueが返ってきたら、ログインしていない
-      store_location
-      flash[:dander] = "Please Login Go Back"
-      redirect_to login__url
-    end
   end
 
   def correct_user

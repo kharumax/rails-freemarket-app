@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token,:activation_token
   before_save :down_email
   before_create :create_activation_digest
+  has_many :products,dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email,presence: true,uniqueness: true,format: {with: VALID_EMAIL_REGEX}
@@ -9,8 +10,7 @@ class User < ApplicationRecord
   validates :password,presence: true,length: { minimum: 6 },allow_nil: true
 
   def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-               BCrypt::Engine.cost
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -24,8 +24,11 @@ class User < ApplicationRecord
   end
 
   def authenticated?(attribute,token)
-    digest = send("#{attribute}_digest") # ここでdiegest = :()_digestに変換している
+    digest = self.send("#{attribute}_digest") # ここでdiegest = :()_digestに変換している
+    puts digest
+    puts token
     return false if digest.nil?
+    puts BCrypt::Password.new(digest)
     BCrypt::Password.new(digest).is_password?(token)
   end
 
@@ -39,7 +42,7 @@ class User < ApplicationRecord
 
   def create_activation_digest
     self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_token)
+    self.activation_digest = User.digest(self.activation_token)
   end
 
 
