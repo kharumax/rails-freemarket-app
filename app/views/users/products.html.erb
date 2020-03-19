@@ -1,0 +1,24 @@
+
+<div class="container">
+  <h1><%= @user.name %>の出品物一覧</h1>
+  <% if not @products.nil? %>
+  <%= will_paginate %>
+  <div class="card-deck">
+    <% @products.each do |product| %>
+      <div class="card">
+        <div class="card-header">
+          <%= product.title %>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title"><%= product.price %></h1>
+          <%= image_tag product.image.url %>
+          <%= link_to "詳細画面", product_path(product) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= will_paginate %>
+<% else %>
+  <h1 style="margin-top: 300px; text-align: center">出品物がありません。</h1>
+<% end %>
+</div>

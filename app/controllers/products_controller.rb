@@ -5,10 +5,9 @@ class ProductsController < ApplicationController
 
   # ここに検索機能を付け足す（自力で作成する）
   def index
-    @products = Product.paginate(page: params[:page])
+    @products = Product.paginate(page: params[:page]).search(params[:search])
   end
 
-  # ここで商品投稿画面を作成する
   def new
     @product = current_user.products.new
   end

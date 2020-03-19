@@ -29,7 +29,10 @@ class UsersController < ApplicationController
 
   def products
     @user = User.find_by(id: params[:id])
-    @products = Product.find_by(user_id: @user.id).all.order(created_at: :desc)
+    @products = Product.find_by(user_id: @user.id)
+    unless @products.nil?
+      @products = @products.order(created_at: :desc)
+    end
   end
   
   def edit

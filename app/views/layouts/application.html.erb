@@ -24,24 +24,5 @@
 
     <%= yield %>
 
-    <div class="debug-box">
-      <% if Rails.env.development? %>
-        <%= debug(params) %>
-      <% end %>
-    </div>
-
-    <style>
-      .body {
-        position: relative;
-      }
-      .debug-box {
-        position: absolute;
-        background-color: #DADADA;
-        bottom: 200px;
-        left: 40%;
-
-      }
-    </style>
-
   </body>
 </html>

@@ -10,7 +10,14 @@ class Product < ApplicationRecord
   # 画像投稿の設定
   mount_uploader :image,ImageUploader
 
-
+  def self.search(search)
+    if search
+      where(['title LIKE ?',"%#{search}%"]) # ここで出品名にキーワードを含む出品物を返す
+    else
+      all # 検索フォームからの値が存在しない場合は全て返す
+    end
+  end
+  
   private
 
   def product_image_size
