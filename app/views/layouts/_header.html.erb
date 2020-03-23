@@ -3,11 +3,9 @@
 <header>
   <div class="d-flex flex-column flex-md-row align-items-center p-5 px-md-4 mb-3 border-bottom shadow-sm"
   style="height: 100px">
-    <h5 class="my-0 mr-md-auto font-weight-normal ml-5">FreeMarket</h5>
-<!--    <form class="form-inline mt-2 mt-md-0 mr-5">-->
-<!--      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
-<!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--    </form>-->
+    <h5 class="my-0 mr-md-auto font-weight-normal ml-5">
+      <%= link_to "FreeMarket",root_path %>
+    </h5>
     <%= form_tag(products_path,:method => "get",class: "form-inline mt-2 mt-md-0 mr-5") do %>
       <%= text_field_tag :search %>
       <%= submit_tag "Search",:name => nil ,class: "btn btn-outline-success my-2 my-sm-0" %>

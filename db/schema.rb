@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200319154600) do
+ActiveRecord::Schema.define(version: 20200322102938) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "room_id", null: false
+    t.integer "user_id", null: false
+    t.string "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,6 +51,14 @@ ActiveRecord::Schema.define(version: 20200319154600) do
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id", "created_at"], name: "index_products_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "talk_rooms", force: :cascade do |t|
+    t.integer "buyer_id", null: false
+    t.integer "seller_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

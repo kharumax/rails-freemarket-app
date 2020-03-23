@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   end
   resources :account_activations,only: [:edit]
   resources :products
+  resources :chat,only: [:create,:show]
+
 
 end

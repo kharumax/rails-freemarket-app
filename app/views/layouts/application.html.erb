@@ -3,6 +3,7 @@
   <head>
     <title>FreeMarket</title>
     <%= csrf_meta_tags %>
+    <meta name="current_user_id" content="<%= current_user.id if current_user %>">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>

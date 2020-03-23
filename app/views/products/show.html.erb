@@ -21,7 +21,13 @@
           <%= link_to "出品取り消し",product_path,method: :delete,class: "btn btn-danger" %>
         <% end %>
         <% unless current_user?(@product.user) %>
-          <%= link_to "購入希望","#",class: "btn btn-success" %>
+
+          <%= form_tag :chat_index,method: :post do %>
+            <input type="hidden" name="seller_id" value="<%= @product.user.id %>">
+            <input type="hidden" name="product_id" value="<%= @product.id %>">
+            <%= submit_tag "DMを送る",class: "chatForm_btn" %>
+          <% end %>
+
         <% end %>
       </div>
 
